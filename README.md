@@ -35,6 +35,14 @@ Make sure the backend is running and accessible (e.g., `http://localhost:3000`).
 
 ---
 
+## 🔗 Backend Repository
+
+This frontend connects to the backend API here:
+
+👉 [Famous Quotes — Backend](https://github.com/Cwan7/famous-quotes-api)
+
+---
+
 ## 👥 Team
 
 - [Zackary O'Connor](https://github.com/zackaryoconnor)
