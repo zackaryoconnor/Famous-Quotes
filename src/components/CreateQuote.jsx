@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CreateQuote = () => {
+const CreateQuote = (props) => {
     const [newQuotes, setNewQuotes] = useState([])
     const [formCreate, setFormCreate] = useState({
         author: '',
@@ -21,7 +21,7 @@ const CreateQuote = () => {
                 quote: formCreate.quote,
                 date: formCreate.date || 'unknown',
                 image: formCreate.image,
-                user: '67fd2662e623cd6fbc777fd3'
+                user: props.session.id
             })
         })
         const newQuoteMade = await response.json();
