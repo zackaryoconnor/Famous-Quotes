@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import CreateQuote from './components/CreateQuote';
+import Quotes from './components/Quotes/Quotes';
 import Home from './components/Home';
 import {useEffect, useState} from 'react'
 
@@ -23,6 +24,7 @@ useEffect(() => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addQuote" element={<CreateQuote session={userSession}/>} />
+          <Route path="/quotes" element={<Quotes/>}/>
         </Routes>
     </Router>
   )
