@@ -21,13 +21,11 @@ useEffect(() => {
   return (
     <Router>
       <Navbar />
-      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addQuote" element={<CreateQuote session={userSession}/>} />
           <Route path="/quotes" element={<Quotes/>}/>
         </Routes>
-      </div>
     </Router>
   )
 }
