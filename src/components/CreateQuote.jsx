@@ -35,87 +35,100 @@ const CreateQuote = (props) => {
     const handleChange = (event) => {
         setFormCreate({...formCreate, [event.target.name]: event.target.value})
       };
+      console.log(props)
  return (
-    <div className="create-quote">
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Author:</label>
+    <div className=" min-h-screen flex items-center justify-center bg-gray-300">
+    <div className="mt-0 w-full max-w-2xl p-6 bg-gray-50 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Add a New Quote</h2>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+            <div className="flex flex-col">
+                <label className="font-medium mb-1">Author:</label>
                 <input
                 type="text"
                 name="author"
                 value={formCreate.author}
                 onChange={handleChange}
                 placeholder="Author"
-                required
+                required className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
-            <div>
-                <label>Category:</label>
+            <div className="flex flex-col">
+                <label className="font-medium mb-1">Category:</label>
                 <select
                 name="category"
                 value={formCreate.category}
                 onChange={handleChange}
                 placeholder="Category"
-                required
+                required className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="" disabled>Select a category</option>
                     <option value="Motivation">Motivation</option>
                     <option value="Wisdom">Wisdom</option>
                     <option value="Humor">Humor</option>
                     <option value="Philosophy">Philosophy</option>
-                    <option value="Love">Love</option>
+                    <option value="Movie">Movie</option>
                     <option value="Other">Other</option>
                 </select>
             </div>
-            <div>
-                <label>Quote:</label>
+            <div className="flex flex-col">
+                <label className="font-medium mb-1">Quote:</label>
                 <textarea
                 name="quote"
                 value={formCreate.quote}
                 onChange={handleChange}
                 placeholder="Enter the quote"
-                required
+                required className="p-2 border rounded-md min-h-[100px] focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
             </div>
-            <div>
-                <label>Date:</label>
-                <input
+            <div className="flex flex-col">
+                <label className="font-medium mb-1">Date:</label>
+                <input 
                 type="text"
                 name="date"
                 value={formCreate.date}
                 onChange={handleChange}
                 placeholder="e.g 2023 or Unknown"
+                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
-            <div>
-                <label>Image URL (optional):</label>
+            <div className="flex flex-col">
+                <label className="font-medium mb-1">Image URL (optional):</label>
                 <input
                 type="text"
                 name="image"
                 value={formCreate.image}
                 onChange={handleChange}
                 placeholder="e.g., https://example.com/image.jpg"
+                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
-        <button type='submit'>Add Quote</button>
+        <button 
+        type='submit'
+        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+        >Add Quote</button>
         </form>
         {newQuotes.length > 0 && (
-            <div>
-                <h3>Your Added Quote:</h3>
+            <div className="mt-8">
+                <h3 className="text-xl font-semibold mb-4">Your Added Quote:</h3>
                 {newQuotes.map((quote, index) => (
-                    <div key={index}>
-                       <p><strong>Author:</strong> {quote.author}</p>
-                       <p><strong>Quote:</strong> {quote.quote}</p>
-                       <p><strong>Category:</strong> {quote.category}</p>
-                       <p><strong>Date:</strong> {quote.date}</p> 
+                    <div key={index} className="p-4 bg-white rounded-lg shadow-sm mb-4 border">
+                       <p><span className="text-gray-600">Author:</span> {quote.author}</p>
+                       <p><span className="text-gray-600">Quote:</span> {quote.quote}</p>
+                       <p><span className="text-gray-600">Category:</span> {quote.category}</p>
+                       <p><span className="text-gray-600">Date:</span> {quote.date}</p> 
                        {quote.image && (
-                        <p><strong>Image:</strong> <img src={quote.image} alt="Quote image"/></p>
+                        <p><span className="text-gray-600">Image:</span> <img 
+                        src={quote.image} 
+                        alt="Quote"
+                        className="max-w-[200px] rounded-md mt-1"
+                        /></p>
                        )}
                     </div>
                 ))}
             </div>
         )}
     </div>
+  </div>  
  )
 }
 export default CreateQuote;

@@ -15,17 +15,15 @@ useEffect(() => {
     const session = await (await fetch('http://localhost:3000/auth/session')).json()
     setUserSession(session)
   }
-  getSession();
+  // getSession();
 })
   return (
     <Router>
       <Navbar />
-      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addQuote" element={<CreateQuote session={userSession}/>} />
         </Routes>
-      </div>
     </Router>
   )
 }
