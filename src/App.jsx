@@ -1,11 +1,14 @@
+import React from 'react'
 import './App.css'
+import Navbar from './components/Navbar.jsx'
+
 
 function App() {
 
   return (
-    <>
-      <h1 className='text-6xl font-bold'>Quote App!</h1>
-    </>
+   <>
+      <Navbar />
+   </>
   )
 }
 
