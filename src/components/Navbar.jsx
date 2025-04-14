@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
+import Quotes from './Quotes/Quotes'; // zack
 
 const Navbar = () => {
     return (
@@ -14,6 +15,7 @@ const Navbar = () => {
 
             <Routes>
                 {<Route path="/" element={<Home />} />}
+                {<Route path="/quotes" element={<Quotes />} />} // zack
             </Routes>
         </Router>
     )
