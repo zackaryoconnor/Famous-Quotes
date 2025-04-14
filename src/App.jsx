@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import CreateQuote from './components/CreateQuote';
+import Quotes from './components/Quotes/Quotes';
 import Home from './components/Home';
 import {useEffect, useState} from 'react'
 
@@ -15,7 +16,7 @@ useEffect(() => {
     const session = await (await fetch('http://localhost:3000/auth/session')).json()
     setUserSession(session)
   }
-  getSession();
+  // getSession();
 })
   return (
     <Router>
@@ -24,6 +25,7 @@ useEffect(() => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addQuote" element={<CreateQuote session={userSession}/>} />
+          <Route path="/quotes" element={<Quotes/>}/>
         </Routes>
       </div>
     </Router>
