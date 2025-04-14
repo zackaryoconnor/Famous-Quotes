@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const Navbar = () => {
     return (
         <nav className="flex items-center justify-center gap-12 bg-blue-500 text-white py-4">
