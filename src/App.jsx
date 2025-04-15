@@ -20,17 +20,18 @@ const RedirectToHome = () => {
 
   return null;
 };
-
+{username: 'cwan7', id:'67fd2662e623cd6fbc777fd3'}
 function App() {
-  const [userSession, setUserSession] = useState(null);
+  const [userSession, setUserSession] = useState({username: 'cwan7', id:'67fd2662e623cd6fbc777fd3'});
 
 useEffect(() => {
   const getSession = async () => {
     const session = await (await fetch('http://localhost:3000/auth/session')).json()
     setUserSession(session)
   }
-  getSession();
+  // getSession();
 }, [])
+console.log(userSession)
   return (
     <Router>
       <Navbar session={userSession} setSession={setUserSession}/>
