@@ -29,8 +29,8 @@ useEffect(() => {
     const session = await (await fetch('http://localhost:3000/auth/session')).json()
     setUserSession(session)
   }
-  // getSession();
-})
+  getSession();
+}, [])
   return (
     <Router>
       <Navbar session={userSession} setSession={setUserSession}/>
