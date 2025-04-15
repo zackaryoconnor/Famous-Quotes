@@ -24,14 +24,16 @@ const RedirectToHome = () => {
 function App() {
   const [userSession, setUserSession] = useState({username: 'cwan7', id:'67fd2662e623cd6fbc777fd3'});
 
-useEffect(() => {
-  const getSession = async () => {
-    const session = await (await fetch('http://localhost:3000/auth/session')).json()
-    setUserSession(session)
-  }
-  // getSession();
-}, [])
-console.log(userSession)
+  useEffect(() => {
+    const getSession = async () => {
+      const session = await (
+        await fetch("http://localhost:3000/auth/session")
+      ).json();
+      setUserSession(session);
+    };
+    getSession(); // this fetches the session every time location changes AND on initial page load;
+  }, []);
+  
   return (
     <Router>
       <Navbar session={userSession} setSession={setUserSession}/>
