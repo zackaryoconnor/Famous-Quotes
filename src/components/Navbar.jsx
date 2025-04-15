@@ -42,15 +42,15 @@ const Navbar = ({ session, setSession }) => {
         </>
       ) : (
         <>
-        <Link className="hover:text-blue-950" to="/addQuote">Add a Quote</Link>
-        <form onSubmit={handleLogout}>
-          <button
-            type="submit"
-            className="bg-transparent hover:text-blue-950 cursor-pointer"
-          >
-            Logout
-          </button>
-        </form>
+          <Link className="hover:text-blue-950" to="/addQuote">Add a Quote</Link>
+          <form onSubmit={handleLogout}>
+            <button
+              type="submit"
+              className="bg-transparent hover:text-blue-950 cursor-pointer"
+            >
+              Logout
+            </button>
+          </form>
         </>
       )}
     </nav>
