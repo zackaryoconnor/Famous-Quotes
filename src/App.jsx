@@ -1,7 +1,12 @@
 // src/App.jsx
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 // Components
 import Navbar from "./components/Navbar";
 // Pages
@@ -15,7 +20,7 @@ const RedirectToHome = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    navigate('/home'); // basically sends the user back to "/home" whenever they reach the "/" route
+    navigate("/home"); // basically sends the user back to "/home" whenever they reach the "/" route
   }, [navigate]);
 
   return null;
@@ -29,34 +34,37 @@ function App() {
       const response = await (
         await fetch("http://localhost:3000/auth/session", {
           method: "GET",
-          credentials: "include" // THIS is crucial for session!
+          credentials: "include", // THIS is crucial for session!
         })
-      ).json()
+      ).json();
       const session = response.session;
       setUserSession(session);
     };
     getSession(); // this fetches the session every time location changes AND on initial page load;
   }, []);
-  
+
   return (
     <Router>
-      <Navbar session={userSession} setSession={setUserSession}/>
-        <Routes>
-          {/* "/" root route */}
-          <Route path="/" element={<RedirectToHome />} />
-          {/* home route */}
-          <Route path="/home" element={<Home />} />
-          {/* quotes */}
-          <Route path="/quotes" element={<Quotes />} />
-          {/* add quote */}
-          <Route
-            path="/addQuote"
-            element={<CreateQuote session={userSession} />}
-          />
-          {/* Register / login */}
-          <Route path="/register" element={<Register session={userSession} />} />
-          <Route path="/login" element={<Login session={userSession} setSession={setUserSession} />} />
-        </Routes>
+      <Navbar session={userSession} setSession={setUserSession} />
+      <Routes>
+        {/* "/" root route */}
+        <Route path="/" element={<RedirectToHome />} />
+        {/* home route */}
+        <Route path="/home" element={<Home />} />
+        {/* quotes */}
+        <Route path="/quotes" element={<Quotes />} />
+        {/* add quote */}
+        <Route
+          path="/addQuote"
+          element={<CreateQuote session={userSession} />}
+        />
+        {/* Register / login */}
+        <Route path="/register" element={<Register session={userSession} />} />
+        <Route
+          path="/login"
+          element={<Login session={userSession} setSession={setUserSession} />}
+        />
+      </Routes>
     </Router>
   );
 }
