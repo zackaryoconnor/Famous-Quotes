@@ -25,9 +25,13 @@ function App() {
 
   useEffect(() => {
     const getSession = async () => {
-      const session = await (
-        await fetch("http://localhost:3000/auth/session")
-      ).json();
+      const response = await (
+        await fetch("http://localhost:3000/auth/session", {
+          method: "GET",
+          credentials: "include" // THIS is crucial for session!
+        })
+      ).json()
+      const session = response.session;
       setUserSession(session);
     };
     getSession(); // this fetches the session every time location changes AND on initial page load;

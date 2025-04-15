@@ -25,11 +25,12 @@ export default function LoginPage({ setSession }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
+      credentials: "include", // This is REQUIRED for cookies to work! I spent an hour debugging because i forgot to include this!
     });
     const data = await response.json();
 
     if (response.ok) {
-      setSession(data);
+      setSession(data.session);
       navigate("/");
     } else {
       setErrors({ server: `⚠️ Server Error: ${data.error}` });
