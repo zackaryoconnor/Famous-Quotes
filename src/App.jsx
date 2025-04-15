@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import CreateQuote from "./pages/CreateQuote";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Quotes from "./components/Quotes/Quotes";
 
 const RedirectToHome = () => {
   const navigate = useNavigate();
@@ -41,6 +42,8 @@ function App() {
           <Route path="/" element={<RedirectToHome />} />
           {/* home route */}
           <Route path="/home" element={<Home />} />
+          {/* quotes */}
+          <Route path="/quotes" element={<Quotes />} />
           {/* add quote */}
           <Route
             path="/addQuote"
