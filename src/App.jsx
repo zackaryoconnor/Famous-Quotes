@@ -20,7 +20,7 @@ const RedirectToHome = () => {
 
   return null;
 };
-{username: 'cwan7', id:'67fd2662e623cd6fbc777fd3'}
+
 function App() {
   const [userSession, setUserSession] = useState({username: 'cwan7', id:'67fd2662e623cd6fbc777fd3'});
 
