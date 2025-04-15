@@ -38,7 +38,7 @@ const CreateQuote = (props) => {
       console.log(props)
  return (
     <div className=" min-h-screen flex items-center justify-center bg-gray-300">
-    <div className="mt-0 w-full max-w-2xl p-6 bg-gray-50 rounded-lg shadow-md">
+    <div className="mt-10 w-full max-w-2xl p-6 bg-gray-100 rounded-lg shadow-xl">
         <h2 className="text-2xl font-bold mb-6 text-center">Add a New Quote</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col">
