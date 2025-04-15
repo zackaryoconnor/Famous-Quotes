@@ -1,33 +1,57 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Navbar from './components/Navbar';
-import CreateQuote from './components/CreateQuote';
-import Home from './components/Home';
-import {useEffect, useState} from 'react'
+// src/App.jsx
+import "./App.css";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate} from "react-router-dom";
+// Components
+import Navbar from "./components/Navbar";
+// Pages
+import Home from "./pages/Home";
+import CreateQuote from "./pages/CreateQuote";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
+const RedirectToHome = () => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    navigate('/home'); // basically sends the user back to "/home" whenever they reach the "/" route
+  }, [navigate]);
+
+  return null;
+};
 
 function App() {
-const [userSession, setUserSession] = useState({username: 'cwan7', id: '67fd2662e623cd6fbc777fd3'})
+  const [userSession, setUserSession] = useState(null);
 
-useEffect(() => {
-  const getSession = async () => {
-    const session = await (await fetch('http://localhost:3000/auth/session')).json()
-    setUserSession(session)
-  }
-  getSession();
-})
+  useEffect(() => {
+    const getSession = async () => {
+      const session = await (
+        await fetch("http://localhost:3000/auth/session")
+      ).json();
+      setUserSession(session);
+    };
+    getSession(); // this fetches the session every time location changes AND on initial page load;
+  }, []);
+  
   return (
     <Router>
-      <Navbar />
-      <div className="container">
+      <Navbar session={userSession} setSession={setUserSession}/>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/addQuote" element={<CreateQuote session={userSession}/>} />
+          {/* "/" root route */}
+          <Route path="/" element={<RedirectToHome />} />
+          {/* home route */}
+          <Route path="/home" element={<Home />} />
+          {/* add quote */}
+          <Route
+            path="/addQuote"
+            element={<CreateQuote session={userSession} />}
+          />
+          {/* Register / login */}
+          <Route path="/register" element={<Register session={userSession} />} />
+          <Route path="/login" element={<Login session={userSession} setSession={setUserSession} />} />
         </Routes>
-      </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
