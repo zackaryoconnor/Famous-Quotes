@@ -29,7 +29,7 @@ const Quotes = () => {
 
 
     return (
-        <div className="mx-24 my-32 grid grid-cols-3 gap-16">
+        <div className="mx-24 mt-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-16">
             { quotes.map((quote) => (
                 <QuotesCard key={ quote._id } quote={ quote } />
                 
