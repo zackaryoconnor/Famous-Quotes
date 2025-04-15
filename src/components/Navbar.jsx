@@ -30,9 +30,6 @@ const Navbar = ({ session, setSession }) => {
         Home
       </Link>
       <Link className="hover:text-blue-950" to="/quotes">Quotes</Link>
-      <Link className="hover:text-blue-950" to="/addQuote">
-        Add a Quote
-      </Link>
       {/* Register / Login links based on session state */}
       {!session ? (
         <>
@@ -44,6 +41,8 @@ const Navbar = ({ session, setSession }) => {
           </Link>
         </>
       ) : (
+        <>
+        <Link className="hover:text-blue-950" to="/addQuote">Add a Quote</Link>
         <form onSubmit={handleLogout}>
           <button
             type="submit"
@@ -52,6 +51,7 @@ const Navbar = ({ session, setSession }) => {
             Logout
           </button>
         </form>
+        </>
       )}
     </nav>
   );
