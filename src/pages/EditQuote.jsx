@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 export default function EditQuoteModal({
   isOpen = true,
   quoteItem = {},
-  onClose,
+  setQuotes = () => {},
+  onCloseF = () => {},
+  className="",
 }) {
-  const { author, category, quote, date, image_url } = quoteItem;
+  const { author, category, quote, date, image: image_url } = quoteItem;
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.body.classList.add("overflow-hidden"); // This disables scrolling for the body
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden"); // This enables scrolling for the body
     }
   }, [isOpen]);
+
+  async function makeRequestTo(url, method = "GET", body = {}) {
+    const response = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...body,
+      }),
+    });
+
+    return response;
+  }
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -23,43 +38,66 @@ export default function EditQuoteModal({
     const date = formElement.date.value;
     const image_url = formElement.image_url.value;
 
-    const response = await fetch(
-      `http://localhost:3000/quote/${quoteItem.id}`,
+    const response = await makeRequestTo(
+      `http://localhost:3000/quote/${quoteItem._id}`,
+      "PUT",
       {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          author,
-          category,
-          quote,
-          date,
-          image: image_url,
-        }),
-      }
+        author,
+        category,
+        quote,
+        date,
+        image: image_url,
+      },
     );
 
     if (response.ok) {
-      console.log(await response.json());
+      const { updatedQuote } = await response.json();
+      setQuotes((prev) =>
+        prev.map((item) => {
+          return (item._id == updatedQuote._id && updatedQuote) || item;
+        }),
+      );
+      onCloseF(e);
+    } else {
+      console.log(response);
     }
   }
 
+  async function onDelete(e) {
+    const response = await makeRequestTo(
+      `http://localhost:3000/quote/${quoteItem._id}`,
+      "DELETE",
+    );
+
+    if (response.ok) {
+      document.body.classList.remove("overflow-hidden"); // This enables scrolling for the body
+      setQuotes((prev) => prev.filter((item) => item._id !== quoteItem._id));
+      onCloseF(e);
+    } else {
+      console.log(response);
+    }
+  }
+
+  // TODO: Add some error handling (if we revisit).
+
   return (
-    isOpen && (
-      <modal className="p-4 bg-black/50 fixed w-screen h-screen  overflow-y-auto">
+    isOpen &&
+    createPortal(
+      <div id="modal" className={`${className} fixed top-0 h-screen w-screen overflow-y-auto`}>
+        {/* Form */}
         <form
           onSubmit={onSubmit}
-          className="bg-gray-200 p-10 rounded-lg w-2xl max-w-full mx-auto flex flex-col gap-2"
+          className="relative z-20 mx-auto mt-10 flex w-md max-w-full flex-col gap-2 rounded-lg border-2 bg-gray-200 p-4 text-gray-700 shadow-lg"
         >
           {/* Title */}
           <h2 className="text-center text-3xl font-semibold">Edit Quote</h2>
-          <hr className="opacity-50 w-[40%] self-center"></hr>
           <div id="inputs" className="flex flex-col gap-2">
             {/* Author */}
             <label className="block font-semibold">Author:</label>
             <input
               required
               name="author"
-              className="border-gray-400 block border-2 p-2 rounded-lg w-full bg-gray-100 h-10"
+              className="block h-10 w-full rounded-lg border-2 border-gray-400 bg-gray-100 p-2 focus:outline-gray-600"
               placeholder="e.g, John Doe"
               defaultValue={author}
             ></input>
@@ -68,7 +106,7 @@ export default function EditQuoteModal({
             <select
               required
               name="category"
-              className="border-gray-400 block bg-gray-100 h-10 border-2 rounded-lg"
+              className="block h-10 rounded-lg border-2 border-gray-400 bg-gray-100 focus:outline-gray-600"
               defaultValue={category}
             >
               {[
@@ -78,8 +116,8 @@ export default function EditQuoteModal({
                 "Philosophy",
                 "Movie",
                 "Other",
-              ].map((category) => (
-                <option>{category}</option>
+              ].map((category, index) => (
+                <option key={index}>{category}</option>
               ))}
             </select>
             {/* Quote */}
@@ -87,7 +125,7 @@ export default function EditQuoteModal({
             <textarea
               required
               name="quote"
-              className="min-h-20 border-gray-400 block border-2 p-2 rounded-lg w-full bg-gray-100 h-10"
+              className="block h-10 min-h-20 w-full rounded-lg border-2 border-gray-400 bg-gray-100 p-2 focus:outline-gray-600"
               placeholder={`e.g, "When life gives you lemons"`}
               defaultValue={quote}
             ></textarea>
@@ -96,7 +134,7 @@ export default function EditQuoteModal({
             <input
               name="date"
               type="text"
-              className="border-gray-400 block border-2 p-2 rounded-lg w-full bg-gray-100 h-10"
+              className="block h-10 w-full rounded-lg border-2 border-gray-400 bg-gray-100 p-2 focus:outline-gray-600"
               placeholder="e.g, 04/15/2025"
               defaultValue={date}
             ></input>
@@ -104,19 +142,45 @@ export default function EditQuoteModal({
             <label className="block font-semibold">Image URL (optional):</label>
             <input
               name="image_url"
-              className="border-gray-400 block border-2 p-2 rounded-lg w-full bg-gray-100 h-10"
+              className="block h-10 w-full rounded-lg border-2 border-gray-400 bg-gray-100 p-2 focus:outline-gray-600"
               placeholder="e.g., https://example.com/image.jpg"
               defaultValue={image_url}
             ></input>
           </div>
+          {/* Update */}
           <button
             type="submit"
-            className="text-white mt-4 bg-blue-500 rounded-lg h-11"
+            className="mt-4 h-11 cursor-pointer rounded-lg bg-blue-500 text-white hover:text-purple-100"
           >
             Update Quote
           </button>
+
+          {/* Delete */}
+          <button
+            type="button"
+            className="mt-4 h-11 cursor-pointer rounded-lg bg-red-500 text-white hover:text-purple-100"
+            onClick={onDelete}
+          >
+            Delete
+          </button>
+          {/* Exit */}
+          <button
+            type="button"
+            className="mx-auto mt-4 h-11 max-h-9 w-1/4 cursor-pointer rounded-lg bg-red-400 text-white hover:text-purple-100"
+            onClick={onCloseF}
+          >
+            Exit
+          </button>
         </form>
-      </modal>
+        {/* Black Background */}
+        <div
+          onClick={(e) => {
+            onCloseF(e);
+          }}
+          className="fixed top-0 z-0 size-full bg-black/50"
+        ></div>
+      </div>,
+      document.getElementById("root"),
     )
   );
 }

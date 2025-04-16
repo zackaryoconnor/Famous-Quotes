@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import QuotesCard from "./QuotesCard";
 import { motion, AnimatePresence } from "motion/react"
 
-const Quotes = () => {
+const Quotes = ({session}) => {
     const [quotes, setQuotes] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
@@ -64,7 +64,7 @@ const Quotes = () => {
 
                 <AnimatePresence>
                     {filteredQuotes.map((quote) => (
-                        <QuotesCard key={quote._id} quote={quote} />
+                        <QuotesCard key={quote._id} quote={quote} session={session} setQuotes={setQuotes} />
 
                     ))}
                 </AnimatePresence>
