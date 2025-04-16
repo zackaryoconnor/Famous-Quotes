@@ -31,6 +31,7 @@ const Navbar = ({ session, setSession }) => {
       {/* Register / Login links based on session state */}
       {!session ? (
         <>
+          <Link className="hover:text-blue-950" to="/game">Play Game</Link>
           <Link className="hover:text-blue-950" to="/register">
             Register
           </Link>
@@ -41,7 +42,6 @@ const Navbar = ({ session, setSession }) => {
       ) : (
         <>
           <Link className="hover:text-blue-950" to="/addQuote">Add a Quote</Link>
-          <Link className="hover:text-blue-950" to="/game">Play Game</Link>
           <form onSubmit={handleLogout}>
             <button
               type="submit"
