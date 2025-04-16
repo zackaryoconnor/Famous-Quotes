@@ -44,11 +44,11 @@ const Navbar = ({ session, setSession }) => {
           );
         })}
         {session ? <LinkComponent text="Add Quote" link="/addQuote" className={`hover:text-blue-950" to="/addQuote`}/> : <></>}
-        {session ? <LinkComponent text="Register" link="/register" className= {`hover:text-blue-950" to="/register`}/> : <></>}
-        {session ? <LinkComponent text="Add Quote" link="/addQuote" className={`hover:text-blue-950" to="/addQuote`}/> : <></>}
+        {!session ? <LinkComponent text="Register" link="/register" className= {`hover:text-blue-950" to="/register`}/> : <></>}
+        {!session ? <LinkComponent text="Login" link="/login" className={`hover:text-blue-950" to="/login`}/> : <></>}
         
         
-        <LinkComponent text="Login" link="/login" className={`${session ? "hidden" : ""} hover:text-blue-950" to="/login`}/>
+        
         
         {/* <form >
           <button
