@@ -7,7 +7,8 @@ const Quotes = ({session}) => {
     const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
     const fetchData = async () => {
-        const url = `http://localhost:3000/quotes`;
+        const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
+        const url = `${api_url}/quotes`;
 
         try {
             const response = await fetch(url);

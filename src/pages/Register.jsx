@@ -44,7 +44,8 @@ export default function RegisterPage() {
       return;
     }
 
-    const response = await fetch("http://localhost:3000/auth/register", {
+    const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
+    const response = await fetch(`${api_url}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

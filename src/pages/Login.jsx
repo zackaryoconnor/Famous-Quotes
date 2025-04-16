@@ -18,8 +18,8 @@ export default function LoginPage({ setSession }) {
     if (Object.keys(newErrors).length > 0) {
       return;
     }
-
-    const response = await fetch("http://localhost:3000/auth/login", {
+    const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
+    const response = await fetch(`${api_url}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

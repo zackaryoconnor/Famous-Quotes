@@ -5,10 +5,12 @@ import LinkComponent from "./Link";
 const Navbar = ({ session, setSession }) => {
   const [showSidebar, setShowSiderbar] = useState(false);
   const handleLogout = async (e) => {
+
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/auth/logout", {
+      const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
+      const response = await fetch(`${api_url}/auth/logout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

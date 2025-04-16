@@ -32,8 +32,9 @@ function App() {
 
   useEffect(() => {
     const getSession = async () => {
+      const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
       const response = await (
-        await fetch("http://localhost:3000/auth/session", {
+        await fetch(`${api_url}/auth/session`, {
           method: "GET",
           credentials: "include" // THIS is crucial for session!
         })

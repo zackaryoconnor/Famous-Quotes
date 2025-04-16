@@ -9,6 +9,7 @@ export default function EditQuoteModal({
   className="",
 }) {
   const { author, category, quote, date, image: image_url } = quoteItem;
+  const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("overflow-hidden"); // This disables scrolling for the body
@@ -39,7 +40,7 @@ export default function EditQuoteModal({
     const image_url = formElement.image_url.value;
 
     const response = await makeRequestTo(
-      `http://localhost:3000/quote/${quoteItem._id}`,
+      `${api_url}/quote/${quoteItem._id}`,
       "PUT",
       {
         author,
@@ -65,7 +66,7 @@ export default function EditQuoteModal({
 
   async function onDelete(e) {
     const response = await makeRequestTo(
-      `http://localhost:3000/quote/${quoteItem._id}`,
+      `${api_url}/quote/${quoteItem._id}`,
       "DELETE",
     );
 
