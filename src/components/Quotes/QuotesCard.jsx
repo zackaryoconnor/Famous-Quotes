@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import EditQuoteModal from "../../pages/EditQuote";
 import { motion, AnimatePresence } from "motion/react"
 
+
 const QuotesCard = ({ quote, setQuotes, session }) => {
     const hasImage = quote.image !== ""
     const [openEditModal, setOpenEditModal] = useState(false);
@@ -13,6 +14,9 @@ const QuotesCard = ({ quote, setQuotes, session }) => {
             exit={{ opacity: 0 }}
             layout
         >
+
+            <div layout className="relative flex flex-col items-center justify-center text-center bg-white rounded-xl p-8 shadow-md min-h-[450px] w-full">
+
             <EditQuoteModal
           quoteItem={quote}
           setQuotes={setQuotes}
@@ -21,12 +25,13 @@ const QuotesCard = ({ quote, setQuotes, session }) => {
             return setOpenEditModal(false);
           }}
         />
-            <div layout className="relative flex flex-col items-center justify-center text-center bg-blue-500 rounded-xl p-8">
+            
+
 
                 {hasImage ? (
                     <img className="bg-gray-500 text-sm w-24 h-24 object-cover rounded-full" src={quote.image} alt="Image of Author" />
                 ) : (
-                    <div className="w-24 h-24 flex items-center justify-center rounded-full bg-white text-3xl">🙂</div>
+                    <div className="w-24 h-24 flex items-center justify-center rounded-full bg-gray-300 text-3xl">🙂</div>
                 )}
 
                 <h2 className="mt-4 text-2xl"><strong>"{quote.quote}"</strong></h2>
