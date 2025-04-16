@@ -52,7 +52,7 @@ function App() {
         {/* home route */}
         <Route path="/home" element={<Home />} />
         {/* quotes */}
-        <Route path="/quotes" element={<Quotes />} />
+        <Route path="/quotes" element={<Quotes session={userSession}/>} />
         {/* add quote */}
         <Route
           path="/addQuote"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import QuotesCard from "./QuotesCard";
 
-const Quotes = () => {
+const Quotes = ({session}) => {
     const [quotes, setQuotes] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
@@ -46,7 +46,7 @@ const Quotes = () => {
 
             <div className="mx-24 mt-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-16">
                 {filteredQuotes.map((quote) => (
-                    <QuotesCard key={quote._id} quote={quote} />
+                    <QuotesCard key={quote._id} quote={quote} session={session} setQuotes={setQuotes} />
                 ))}
             </div>
         </div>
