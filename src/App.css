@@ -1,12 +1,63 @@
 @import "tailwindcss";
 
 
-body {
-    height: 100vh;
-    width: 100vw;
-}
+@theme {
+    /* BREAKPOINTS */
+    --breakpoint-navBreakPoint: 730px;
 
-#root {
-    width: 100%;
-    height: 100%;
-}
+
+
+    /* Main theme colors - earthy neutral palette */
+    --color-primary: #504B38;          /* Deep olive/brown */
+    --color-primary-light: #6A6548;    /* Lighter version of primary */
+    --color-primary-dark: #3B372A;     /* Darker version of primary */
+    
+    --color-secondary: #B9B28A;        /* Medium tan/khaki */
+    --color-secondary-light: #C9C3A3;  /* Lighter version of secondary */
+    --color-secondary-dark: #9E9876;   /* Darker version of secondary */
+    
+    --color-accent: #EBE5C2;           /* Light cream/beige */
+    --color-accent-light: #F3EFDA;     /* Lighter version of accent */
+    --color-accent-dark: #DCD6B5;      /* Darker version of accent */
+    
+    --color-background: #F8F3D9;       /* Lightest cream/ivory */
+    --color-background-alt: #F1EBCF;   /* Slightly darker background variant */
+    
+    /* UI feedback colors (adjusted to match the palette) */
+    --color-success: #6B7F59;          /* Muted green */
+    --color-success-light: #8A9B7A;
+    --color-success-dark: #556345;
+    
+    --color-warning: #C7A866;          /* Warm amber */
+    --color-warning-light: #D5BC87;
+    --color-warning-dark: #B09257;
+    
+    --color-error: #AB6D5B;            /* Terracotta red */
+    --color-error-light: #BC8676;
+    --color-error-dark: #935C4C;
+    
+    --color-info: #6C7F8C;             /* Muted blue-gray */
+    --color-info-light: #8A99A3;
+    --color-info-dark: #586673;
+    
+    /* Neutral colors */
+    --color-black: #332E1F;            /* Off-black that pairs with the palette */
+    --color-dark-gray: #5E5946;
+    --color-gray: #8C8770;
+    --color-light-gray: #D0CBAF;
+    --color-off-white: #F5F2E3;
+    --color-white: #FDFBF0;            /* Off-white that pairs with the palette */
+    
+    /* Typography and other design elements */
+    --font-sans: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    --font-serif: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    --rounded-sm: 0.125rem;
+    --rounded: 0.25rem;
+    --rounded-md: 0.375rem;
+    --rounded-lg: 0.5rem;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition-base: all 0.2s ease-in-out;
+  }

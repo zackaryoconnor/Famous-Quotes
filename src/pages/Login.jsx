@@ -41,31 +41,31 @@ export default function LoginPage({ setSession }) {
     <div className="m-auto mt-20 w-80">
       <form
         onSubmit={onSubmit}
-        className="border-2 border-bg-gray-500/30 bg-gray-200 text-gray-500 gap-2 size-full text-center rounded-lg p-5 shadow-lg flex flex-col items-center"
+        className="border-bg-gray-500/30 flex size-full flex-col items-center gap-2 rounded-lg border-2 bg-gray-200 p-5 text-center text-gray-500 shadow-lg"
       >
         {/* Title */}
         <h2 className="text-3xl font-semibold">Login</h2>
         {(errors.server && (
-          <label className="text-center w-full text-red-700 text-xs">
+          <label className="w-full text-center text-xs text-red-700">
             {errors.server}
           </label>
         )) ||
           ""}
-        <hr className="my-2 border-gray-500/30 w-[50%]"></hr>
+        <hr className="my-2 w-[50%] border-gray-500/30"></hr>
 
-        <div id="inputs" className="flex flex-col gap-2 w-full px-4">
+        <div id="inputs" className="flex w-full flex-col gap-2 px-4">
           {/* Username */}
           <input
             required
             autoComplete="username"
             name="username"
             className={`${
-              errors.username ? " outline-1 !outline-red-700" : ""
-            } focus:outline-gray-400 w-full block bg-white shadow p-2 rounded-md placeholder:text-gray-500`}
+              errors.username ? "outline-1 !outline-red-700" : ""
+            } block w-full rounded-md bg-white p-2 shadow placeholder:text-gray-500 focus:outline-gray-400`}
             placeholder="Username"
           ></input>
           {(errors.username && (
-            <label className="w-full text-left text-red-700 text-xs">
+            <label className="w-full text-left text-xs text-red-700">
               {errors.username}
             </label>
           )) ||
@@ -77,28 +77,28 @@ export default function LoginPage({ setSession }) {
             type="password"
             name="password"
             className={`${
-              errors.password ? " outline-1 !outline-red-700" : ""
-            } block bg-white shadow p-2 rounded-md placeholder:text-gray-500 focus:outline-gray-400 w-full`}
+              errors.password ? "outline-1 !outline-red-700" : ""
+            } block w-full rounded-md bg-white p-2 shadow placeholder:text-gray-500 focus:outline-gray-400`}
             placeholder="Password"
           ></input>
           {(errors.password && (
-            <label className="w-full text-left text-red-700 text-xs">
+            <label className="w-full text-left text-xs text-red-700">
               {errors.password}
             </label>
           )) ||
             ""}
         </div>
 
-        <hr className="border-gray-500/30 w-[50%]"></hr>
+        <hr className="w-[50%] border-gray-500/30"></hr>
         {/* Submit button */}
         <button
-          className="p-2 rounded-lg bg-blue-400 cursor-pointer text-white font-bold w-full"
+          className="w-full cursor-pointer rounded-lg bg-blue-400 p-2 font-bold text-white"
           type="submit"
         >
           Login
         </button>
 
-        <div className="text-sm mt-2">
+        <div className="mt-2 text-sm">
           <span>Don't have an account? </span>
           <a className="text-blue-500" href="/register">
             Register
