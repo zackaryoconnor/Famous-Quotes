@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LinkComponent from "./Link";
 
-
 const Navbar = ({ session, setSession }) => {
   const [showSidebar, setShowSiderbar] = useState(false);
   const handleLogout = async (e) => {
@@ -28,43 +27,58 @@ const Navbar = ({ session, setSession }) => {
   };
 
   const links = [
-    { text: "Home", link: "/" },
-    { text: "Quotes", link: "/quotes" },
-    { text: "Play Game", link: "/game" },
-  ];
+    // Static Links
+    ...[
+      { text: "Home", link: "/" },
+      { text: "Quotes", link: "/quotes" },
+      { text: "Play Game", link: "/game" },
+    ].map((item, index) => (
+      <Link key={index} to={item.link}>
+        <LinkComponent text={item.text} />
+      </Link>
+    )),
 
+    // Conditional Links
+    ...(session
+      ? [
+          <Link key="addQuote" to="/addQuote">
+            <LinkComponent text="Add Quote" />
+          </Link>,
+          <form key="logout" onSubmit={handleLogout}>
+            <button type="submit" className="cursor-pointer">
+              <LinkComponent text="Logout" />
+            </button>
+          </form>,
+        ]
+      : [
+          <Link key="register" to="/register">
+            <LinkComponent text="Register" />
+          </Link>,
+          <Link key="login" to="/login">
+            <LinkComponent text="Login" />
+          </Link>,
+        ]),
+  ];
   return (
     <nav className="sm:bg-primary text-accent-light bg-primary relative flex items-center justify-between gap-12 px-14 py-4">
       <h1 className="text-3xl">Quotefolio</h1>
 
       <div id="links" className="flex gap-7 text-xl">
-        {links.map((item) => {
+        {/* Links */}
+        {links.map((link, index) => {
           return (
-            <LinkComponent text={item.text} link={item.link}/>
+            <div className="navBreakPoint:!block hidden" key={index}>
+              {link}
+            </div>
           );
         })}
-        {session ? <LinkComponent text="Add Quote" link="/addQuote" className={`hover:text-blue-950" to="/addQuote`}/> : <></>}
-        {!session ? <LinkComponent text="Register" link="/register" className= {`hover:text-blue-950" to="/register`}/> : <></>}
-        {!session ? <LinkComponent text="Login" link="/login" className={`hover:text-blue-950" to="/login`}/> : <></>}
-        
-        
-        
-        
-        {/* <form >
-          <button
-            type="submit"
-            className="cursor-pointer bg-transparent hover:text-blue-950"
-          >
-            Logout
-          </button>
-        </form> */}
 
-        {/* Register / Login links based on session state */}
+        {/* Hamburger */}
         <button
           onClick={() => {
             setShowSiderbar(!showSidebar);
           }}
-          className="material-symbols-outlined cursor-pointer navBreakPoint:!hidden"
+          className="material-symbols-outlined navBreakPoint:!hidden cursor-pointer"
         >
           menu
         </button>
@@ -74,17 +88,11 @@ const Navbar = ({ session, setSession }) => {
         <>
           <div
             id="Dropdown"
-            className={`items-star bg-primary absolute top-full right-0 z-20 flex h-screen w-[200px] flex-col gap-4 p-5 opacity-80 sm:!hidden`}
+            className={`items-star bg-primary navBreakPoint:!hidden absolute top-full right-0 z-20 flex h-screen w-[200px] flex-col gap-4 p-5 opacity-80`}
           >
-            {links.map((item) => {
-              return (
-                <Link
-                  className="hover:underline hover:decoration-2 hover:underline-offset-8 sm:!block"
-                  to={item.link}
-                >
-                  {item.text}
-                </Link>
-              );
+            {/* Links */}
+            {links.map((link, index) => {
+              return <div key={index}>{link}</div>;
             })}
           </div>
         </>
