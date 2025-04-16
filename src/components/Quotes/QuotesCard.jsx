@@ -1,12 +1,18 @@
 import React from "react"
+import { motion, AnimatePresence } from "motion/react"
 
 const QuotesCard = ({ quote }) => {
 
     const hasImage = quote.image !== ""
 
     return (
-        <>
-            <div className="flex flex-col items-center justify-center text-center bg-blue-500 rounded-xl p-8">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            layout
+        >
+            <div layout className="flex flex-col items-center justify-center text-center bg-blue-500 rounded-xl p-8">
 
                 {hasImage ? (
                     <img className="bg-gray-500 text-sm w-24 h-24 object-cover rounded-full" src={quote.image} alt="Image of Author" />
@@ -19,7 +25,7 @@ const QuotesCard = ({ quote }) => {
                 <p className="text-sm text-gray-800">{quote.date}</p>
                 <p className="mt-4 text-sm text-gray-800">{quote.category}</p>
             </div>
-        </>
+        </motion.div>
     )
 }
 
