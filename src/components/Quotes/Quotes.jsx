@@ -33,9 +33,9 @@ const Quotes = () => {
 
 
     return (
-        <div layout>
+        <div className="bg-gray-300">
 
-            <div className="mt-8 mx-24">
+            <div className="pt-32 mx-24">
                 <select
                     value={selectedCategory}
                     onChange={(event) => setSelectedCategory(event.target.value)}
@@ -47,11 +47,20 @@ const Quotes = () => {
                         </option>
                     ))}
                 </select>
+
+                <p className="text-gray-700 text-sm mb-6">
+                    Showing {filteredQuotes.length} quote{filteredQuotes.length !== 1 ? "s" : ""} in{' '}
+                    <span className="font-semibold italic">
+                        {selectedCategory === "All Categories" ? "All Categories" : `"${selectedCategory}"`}
+                    </span>
+                </p>
+
+
             </div>
 
             <motion.div
                 layout
-                className="mx-24 my-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-16">
+                className="mx-24 my-8 pb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
 
                 <AnimatePresence>
                     {filteredQuotes.map((quote) => (
