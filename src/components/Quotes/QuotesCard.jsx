@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react"
 const QuotesCard = ({ quote, setQuotes, session }) => {
     const hasImage = quote.image !== ""
     const [openEditModal, setOpenEditModal] = useState(false);
-    
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -17,15 +17,15 @@ const QuotesCard = ({ quote, setQuotes, session }) => {
 
             <div layout className="relative flex flex-col items-center justify-center text-center bg-white rounded-xl p-8 shadow-md min-h-[450px] w-full">
 
-            <EditQuoteModal
-          quoteItem={quote}
-          setQuotes={setQuotes}
-          isOpen={openEditModal}
-          onCloseF={(e) => {
-            return setOpenEditModal(false);
-          }}
-        />
-            
+                <EditQuoteModal
+                    quoteItem={quote}
+                    setQuotes={setQuotes}
+                    isOpen={openEditModal}
+                    onCloseF={(e) => {
+                        return setOpenEditModal(false);
+                    }}
+                />
+
 
 
                 {hasImage ? (
@@ -40,15 +40,15 @@ const QuotesCard = ({ quote, setQuotes, session }) => {
                 <p className="mt-4 text-sm text-gray-800">{quote.category}</p>
                 {/* Edit Button */}
                 {session && session.id == quote.user ? (
-            <button
-              onClick={() => setOpenEditModal(true)}
-              className="absolute top-5 left-5 cursor-pointer rounded-lg bg-[#0e256a] p-2 px-4 text-[#00cef4] hover:text-[#1deffa]"
-            >
-              Edit
-            </button>
-          ) : (
-            <></>
-          )}
+                    <button
+                        onClick={() => setOpenEditModal(true)}
+                        className="absolute top-5 left-5 cursor-pointer rounded-lg border- p-2 px-4 text-black hover:text-secondary hover:underline "
+                    >
+                        Edit
+                    </button>
+                ) : (
+                    <></>
+                )}
             </div>
         </motion.div>
     )

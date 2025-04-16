@@ -150,7 +150,7 @@ export default function EditQuoteModal({
           {/* Update */}
           <button
             type="submit"
-            className="mt-4 h-11 cursor-pointer rounded-lg bg-blue-500 text-white hover:text-purple-100"
+            className="mt-4 h-11 cursor-pointer rounded-lg bg-green-700 text-white hover:text-purple-100"
           >
             Update Quote
           </button>
@@ -166,7 +166,7 @@ export default function EditQuoteModal({
           {/* Exit */}
           <button
             type="button"
-            className="mx-auto mt-4 h-11 max-h-9 w-1/4 cursor-pointer rounded-lg bg-red-400 text-white hover:text-purple-100"
+            className="mx-auto mt-4 h-11 max-h-9 w-1/4 cursor-pointer rounded-lg bg-gray-500 text-white hover:text-purple-100"
             onClick={onCloseF}
           >
             Exit

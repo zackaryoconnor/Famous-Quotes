@@ -60,16 +60,14 @@ const Game = () => {
     }
     const changeButtonColor = (selectedAuthor, author, correctAuthor) => {
         if (selectedAuthor !== author ) {
-            return 'bg-blue-500 hover:bg-blue-600'
+            return 'bg-gray hover:bg-dark-gray'
         } 
-        return selectedAuthor === correctAuthor ? 'bg-green-500' : 'bg-red-500';
+        return selectedAuthor === correctAuthor ? 'bg-green-800' : 'bg-red-800';
     } 
     console.log(selectedAuthor)
 return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300">
-        <h1 className="text-center text-5xl 
-        font-extrabold mb-8 bg-gradient-to-r from-blue-500 to-purple-500 
-        text-transparent bg-clip-text drop-shadow-md">Guess The Author</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-light-gray">
+        <h1 className="text-center text-6xl mb-8 text-primary drop-shadow-md">Guess The Author</h1>
         <div className="p-6 bg-white rounded-lg shadow-md max-w-lg w-full">
             {currentQuote ? (
                 <div className="space-y-2">
@@ -98,7 +96,7 @@ return (
             <button
             onClick={() => pickRandomQuote(quotes)}
             disabled={selectedAuthor === null }
-            className={`bg-gray-500 w-full text-white rounded-lg p-3 hover:bg-gray-600`}>
+            className={`bg-info w-full text-white rounded-lg p-3 hover:bg-info-dark`}>
             Next Quote</button>
         </div>
         

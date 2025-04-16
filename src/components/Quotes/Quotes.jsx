@@ -33,7 +33,7 @@ const Quotes = ({session}) => {
 
 
     return (
-        <div className="bg-gray-300">
+        <div className="bg-light-gray">
 
             <div className="pt-32 mx-24">
                 <select
