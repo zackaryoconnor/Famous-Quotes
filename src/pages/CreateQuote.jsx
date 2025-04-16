@@ -37,8 +37,8 @@ const CreateQuote = (props) => {
       };
       console.log(props)
  return (
-    <div className=" min-h-screen flex items-center justify-center bg-gray-300">
-    <div className="mt-10 w-full max-w-2xl p-6 bg-gray-100 rounded-lg shadow-xl">
+    <div className=" min-h-screen flex items-center justify-center bg-light-gray">
+    <div className="mt-10 w-full max-w-2xl p-6 bg-white rounded-lg shadow-xl">
         <h2 className="text-2xl font-bold mb-6 text-center">Add a New Quote</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="flex flex-col">
@@ -49,7 +49,7 @@ const CreateQuote = (props) => {
                 value={formCreate.author}
                 onChange={handleChange}
                 placeholder="Author"
-                required className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required className="p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
                 />
             </div>
             <div className="flex flex-col">
@@ -59,7 +59,7 @@ const CreateQuote = (props) => {
                 value={formCreate.category}
                 onChange={handleChange}
                 placeholder="Category"
-                required className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required className="p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
                 >
                     <option value="" disabled>Select a category</option>
                     <option value="Motivation">Motivation</option>
@@ -77,7 +77,7 @@ const CreateQuote = (props) => {
                 value={formCreate.quote}
                 onChange={handleChange}
                 placeholder="Enter the quote"
-                required className="p-2 border rounded-md min-h-[100px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required className="p-2 border rounded-md min-h-[100px] focus:outline-none focus:ring-1 focus:ring-primary"
           />
             </div>
             <div className="flex flex-col">
@@ -88,7 +88,7 @@ const CreateQuote = (props) => {
                 value={formCreate.date}
                 onChange={handleChange}
                 placeholder="e.g 2023 or Unknown"
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
                 />
             </div>
             <div className="flex flex-col">
@@ -99,12 +99,12 @@ const CreateQuote = (props) => {
                 value={formCreate.image}
                 onChange={handleChange}
                 placeholder="e.g., https://example.com/image.jpg"
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
                 />
             </div>
         <button 
         type='submit'
-        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+        className="w-full bg-info text-white py-2 rounded-md hover:bg-info-dark transition"
         >Add Quote</button>
         </form>
         {newQuotes.length > 0 && (

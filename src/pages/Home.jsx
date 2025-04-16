@@ -22,8 +22,8 @@ const Home = () => {
    }, [])
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300">
-            <h1 className=" text-center text-5xl font-extrabold mb-8 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text drop-shadow-md">Welcome to QuoteFolio</h1>
+        <div className="min-h-screen flex flex-col items-center justify-center bg-light-gray">
+            <h1 className=" text-center text-6xl mb-8 text-primary drop-shadow-md">Welcome to QuoteFolio</h1>
             <div className=" p-6 bg-white rounded-lg shadow-md max-w-lg w-full">
                     <h2 className="text-2xl font-bold mb-4 text-center">Your Random Quote</h2>
                     <div className=" space-y-2">
