@@ -1,7 +1,12 @@
 // src/App.jsx
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 // Components
 import Navbar from "./components/Navbar";
 // Pages
@@ -16,7 +21,7 @@ const RedirectToHome = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    navigate('/home'); // basically sends the user back to "/home" whenever they reach the "/" route
+    navigate("/home"); // basically sends the user back to "/home" whenever they reach the "/" route
   }, [navigate]);
 
   return null;
@@ -27,16 +32,21 @@ function App() {
 
   useEffect(() => {
     const getSession = async () => {
-      const session = await (
-        await fetch("http://localhost:3000/auth/session")
-      ).json();
+      const response = await (
+        await fetch("http://localhost:3000/auth/session", {
+          method: "GET",
+          credentials: "include" // THIS is crucial for session!
+        })
+      ).json()
+      const session = response.session;
       setUserSession(session);
     };
     getSession(); // this fetches the session every time location changes AND on initial page load;
   }, []);
-  
+
   return (
     <Router>
+
       <Navbar session={userSession} setSession={setUserSession}/>
         <Routes>
           {/* "/" root route */}
@@ -55,6 +65,7 @@ function App() {
           <Route path="/login" element={<Login session={userSession} setSession={setUserSession} />} />
           <Route path="/game" element={<Game session={userSession}/>} />
         </Routes>
+
     </Router>
   );
 }
