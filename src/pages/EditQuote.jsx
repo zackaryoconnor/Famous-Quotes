@@ -8,7 +8,7 @@ export default function EditQuoteModal({
   onCloseF = () => {},
   className="",
 }) {
-  const { author, category, quote, date, image_url } = quoteItem;
+  const { author, category, quote, date, image: image_url } = quoteItem;
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("overflow-hidden"); // This disables scrolling for the body
