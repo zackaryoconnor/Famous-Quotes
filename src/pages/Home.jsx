@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 
 const Home = () => {
-const [quotes, setQuotes] = useState([]);
-const [randomQuote, setRandomQuote] = useState([])
+    const [quotes, setQuotes] = useState([]);
+    const [randomQuote, setRandomQuote] = useState([])
 
    useEffect(() => {
     const  getQuotes = async () => {

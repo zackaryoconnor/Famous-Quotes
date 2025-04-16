@@ -26,9 +26,7 @@ const Navbar = ({ session, setSession }) => {
 
   return (
     <nav className="flex items-center justify-center gap-12 bg-blue-500 text-white py-4">
-      <Link className="hover:text-blue-950" to="/">
-        Home
-      </Link>
+      <Link className="hover:text-blue-950" to="/">Home</Link>
       <Link className="hover:text-blue-950" to="/quotes">Quotes</Link>
       {/* Register / Login links based on session state */}
       {!session ? (
@@ -43,6 +41,7 @@ const Navbar = ({ session, setSession }) => {
       ) : (
         <>
           <Link className="hover:text-blue-950" to="/addQuote">Add a Quote</Link>
+          <Link className="hover:text-blue-950" to="/game">Play Game</Link>
           <form onSubmit={handleLogout}>
             <button
               type="submit"
