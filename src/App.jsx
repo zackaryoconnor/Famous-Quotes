@@ -10,6 +10,7 @@ import CreateQuote from "./pages/CreateQuote";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Quotes from "./components/Quotes/Quotes";
+import Game from "./pages/Game";
 
 const RedirectToHome = () => {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function App() {
           {/* Register / login */}
           <Route path="/register" element={<Register session={userSession} />} />
           <Route path="/login" element={<Login session={userSession} setSession={setUserSession} />} />
+          <Route path="/game" element={<Game session={userSession}/>} />
         </Routes>
     </Router>
   );
