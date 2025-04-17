@@ -8,7 +8,10 @@ const Home = () => {
     const  getQuotes = async () => {
         try {
             const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
-            const response = await fetch(`${api_url}/quotes`);
+            const response = await fetch(`${api_url}/quotes`, {
+                method: "GET",
+                credentials: "include" // <-- This is crucial!
+              });
             const data = await response.json();
             setQuotes(data)
             if (data.length > 0) {
