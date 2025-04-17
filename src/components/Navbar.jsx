@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import LinkComponent from "./Link";
 
 const Navbar = ({ session, setSession }) => {
+  const navigateTo = useNavigate();
   const [showSidebar, setShowSiderbar] = useState(false);
   const handleLogout = async (e) => {
 
@@ -20,6 +21,7 @@ const Navbar = ({ session, setSession }) => {
 
       if (response.ok) {
         setSession(null); // clear the session
+        navigateTo("/home"); // send home
       } else {
         console.error("Logout failed");
       }
@@ -28,6 +30,9 @@ const Navbar = ({ session, setSession }) => {
     }
   };
 
+  // I used this approach to manage links in one place, so I can easily reuse them and keep things consistent. 
+  // It's a programming best practice for maintaining a single source of truth. I knew I'd need to reuse these links
+  // across different parts of the app, so it's cleaner and more efficient this way.
   const links = [
     // Static Links
     ...[
@@ -46,11 +51,9 @@ const Navbar = ({ session, setSession }) => {
           <Link key="addQuote" to="/addQuote">
             <LinkComponent text="Add Quote" />
           </Link>,
-          <form key="logout" onSubmit={handleLogout}>
-            <button type="submit" className="cursor-pointer">
+            <button onClick={handleLogout} type="submit" className="cursor-pointer">
               <LinkComponent text="Logout" />
             </button>
-          </form>,
         ]
       : [
           <Link key="register" to="/register">
@@ -61,6 +64,8 @@ const Navbar = ({ session, setSession }) => {
           </Link>,
         ]),
   ];
+
+
   return (
     <nav className="sm:bg-primary text-accent-light bg-primary relative flex items-center justify-between gap-12 px-14 py-4">
       <h1 className="text-3xl">Quotefolio</h1>
@@ -76,7 +81,7 @@ const Navbar = ({ session, setSession }) => {
         })}
 
         {/* Hamburger */}
-        <button
+        <button // <---- This is a svg/icon we got from google
           onClick={() => {
             setShowSiderbar(!showSidebar);
           }}

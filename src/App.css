@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
+/* Preflight styles from Tailwind CSS documentation on installation. These are used to normalize and reset default browser styles. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 
+/* This color palette was referenced from Color Hunt -> (https://colorhunt.co/palette/f8f3d9ebe5c2b9b28a504b38).
+   This is the color we googled and picked. */
 @theme {
-    /* BREAKPOINTS */
+    /* our custom BREAKPOINTS */
     --breakpoint-navBreakPoint: 760px;
 
 
-
-    /* Main theme colors - earthy neutral palette */
+    /* Main theme colors */
     --color-primary: #504B38;          /* Deep olive/brown */
     --color-primary-light: #6A6548;    /* Lighter version of primary */
     --color-primary-dark: #3B372A;     /* Darker version of primary */
