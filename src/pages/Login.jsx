@@ -38,10 +38,11 @@ export default function LoginPage({ setSession }) {
   };
 
   return (
-    <div className="m-auto mt-20 w-80">
+    <div className=" min-h-screen bg-light-gray">
+    <div className="m-auto  w-80 pt-20">
       <form
         onSubmit={onSubmit}
-        className="border-bg-gray-500/30 flex size-full flex-col items-center gap-2 rounded-lg border-2 bg-gray-200 p-5 text-center text-gray-500 shadow-lg"
+        className="border-gray flex size-full flex-col items-center gap-2 rounded-lg border-2 bg-white p-5 text-center text-gray-900 shadow-lg"
       >
         {/* Title */}
         <h2 className="text-3xl font-semibold">Login</h2>
@@ -92,7 +93,7 @@ export default function LoginPage({ setSession }) {
         <hr className="w-[50%] border-gray-500/30"></hr>
         {/* Submit button */}
         <button
-          className="w-full cursor-pointer rounded-lg bg-blue-400 p-2 font-bold text-white"
+          className="w-full cursor-pointer rounded-lg bg-gray p-2 font-bold text-white"
           type="submit"
         >
           Login
@@ -106,5 +107,6 @@ export default function LoginPage({ setSession }) {
         </div>
       </form>
     </div>
+</div>
   );
 }

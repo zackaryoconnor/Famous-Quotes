@@ -62,10 +62,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="m-auto mt-20 w-80">
+    <div className="bg-light-gray min-h-screen ">
+    <div className="m-auto mt-20 w-80 pt-20">
       <form
         onSubmit={onSubmit}
-        className="border-2 border-bg-gray-500/30 bg-gray-200 text-gray-500 gap-2 size-full text-center rounded-lg p-5 shadow-lg flex flex-col items-center"
+        className="border-2 border-gray bg-white text-gray-500 gap-2 size-full text-center rounded-lg p-5 shadow-lg flex flex-col items-center"
       >
         {/* Title */}
         <h2 className="text-3xl font-semibold">Registration</h2>
@@ -96,7 +97,7 @@ export default function RegisterPage() {
                 name="username"
                 className={`${
                   errors.username ? " outline-1 !outline-red-700" : ""
-                } focus:outline-gray-400 w-full block bg-white shadow  p-2 rounded-md placeholder:text-gray-500`}
+                } focus:outline-gray-400 w-full block bg-blue-100 shadow  p-2 rounded-md placeholder:text-gray-500`}
                 placeholder="Username"
               ></input>
               {(errors.username && (
@@ -113,7 +114,7 @@ export default function RegisterPage() {
                 name="password"
                 className={`${
                   errors.password ? " outline-1 !outline-red-700" : ""
-                } block bg-white shadow p-2 rounded-md placeholder:text-gray-500 focus:outline-gray-400 w-full`}
+                } block bg-blue-100 shadow p-2 rounded-md placeholder:text-gray-500 focus:outline-gray-400 w-full`}
                 placeholder="Password"
               ></input>
               {(errors.password && (
@@ -130,7 +131,7 @@ export default function RegisterPage() {
                 name="confirmPassword"
                 className={`${
                   errors.confirmPassword ? " outline-1 !outline-red-700" : ""
-                } block bg-white shadow p-2 rounded-md placeholder:text-gray-500 focus:outline-gray-400 w-full`}
+                } block bg-blue-100 shadow p-2 rounded-md placeholder:text-gray-500 focus:outline-gray-400 w-full`}
                 placeholder="Confirm Password"
               ></input>
               {(errors.confirmPassword && (
@@ -144,7 +145,7 @@ export default function RegisterPage() {
             <hr className="border-gray-500/30 w-[50%]"></hr>
             {/* Submit button */}
             <button
-              className="p-2 rounded-lg bg-blue-400 cursor-pointer text-white font-bold w-full"
+              className="p-2 rounded-lg bg-gray cursor-pointer text-white font-bold w-full"
               type="submit"
             >
               Register
@@ -159,6 +160,7 @@ export default function RegisterPage() {
           </>
         )}
       </form>
+    </div>
     </div>
   );
 }
