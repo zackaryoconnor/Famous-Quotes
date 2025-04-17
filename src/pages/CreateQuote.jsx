@@ -9,10 +9,11 @@ const CreateQuote = (props) => {
         date: '',
         image: ''
       });
+    const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch('http://localhost:3000/quotes', {
+        const response = await fetch(`${api_url}/quotes`, {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({

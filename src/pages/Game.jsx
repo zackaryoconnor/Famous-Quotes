@@ -11,8 +11,9 @@ const Game = () => {
 
     useEffect(() => {
     const  getQuotes = async () => {
+        const api_url = import.meta.env.VITE_API_URL || "http://localhost:3000"
         try {
-            const response = await fetch(`http://localhost:3000/quotes`);
+            const response = await fetch(`${api_url}/quotes`);
             const data = await response.json();
             setQuotes(data)
             if (data.length > 0) {
