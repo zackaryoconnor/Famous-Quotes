@@ -26,6 +26,10 @@ Users can post and view quotes — personal or famous.
    ```bash
    npm run dev
    ```
+   or
+   ```bash
+   npm run dev -- --host localhost --port 5137
+   ```
 Make sure the backend is running and accessible.
 ---
 ## 🔗 Backend Repository
