@@ -4,9 +4,25 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+
+  const allowedHost = env.VITE_ALLOWED_HOST
+
+  return {
+    plugins: [
+      react(),
+      tailwindcss(),
+    ],
+    server: {
+      host: '0.0.0.0',
+      strictPort: true,
+      allowedHosts: allowedHost ? [allowedHost] : [],
+    },
+    preview: {
+      host: '0.0.0.0',
+      strictPort: true,
+      allowedHosts: allowedHost ? [allowedHost] : [],
+    },
+  }
 })
